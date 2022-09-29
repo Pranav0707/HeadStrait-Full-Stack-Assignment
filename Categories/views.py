@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from numpy import product
 from django.contrib.auth import logout
 from .forms import CategoryForm, ProductForm
 from django.contrib import messages
