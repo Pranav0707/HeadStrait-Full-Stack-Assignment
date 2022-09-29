@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+
+    <title>HeadStrait | Ecommerce</title>
+    <style>
+        input[type=text],
+        input[type=password],
+        input[type=email],
+        input[type=number],
+        textarea {
+            border: 1px solid #757575;
+            border-radius: 5px;
+            padding: 10px;
+            width: 90%;
+        }
+
+        label {
+            padding-top: 10px !important;
+            display: block;
+        }
+
+        ::placeholder {
+            font-weight: 300;
+            opacity: 0.5;
+        }
+
+        select {
+            border: 1px solid #757575;
+            border-radius: 5px;
+            padding: 10px;
+            width: 90%;
+        }
+    </style>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!--
+
+TemplateMo 546 Sixteen Clothing
+
+https://templatemo.com/tm-546-sixteen-clothing
+
+-->
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templatemo-sixteen.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+
+</head>
+
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <!-- <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div> -->
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{%url 'index' %}">
+                    <h2>HeadStrait | <em>Ecommerce</em></h2>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-sm nav-link" href="" data-toggle="modal" data-target="#Add_Category">
+                                Add New Category</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                <a class="nav-link" href="about.html">About Us</a>
+              </li>
+               -->
+                        <li class="nav-item">
+                            <a class="nav-link">Welcome: {{request.user}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'logout' %}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="banner header-text">
+        <div class="owl-banner owl-carousel">
+            <div class="banner-item-01">
+                <div class="text-content">
+                    <h4>Best Offer</h4>
+                    <h2>New Arrivals On Sale</h2>
+                </div>
+            </div>
+            <div class="banner-item-02">
+                <div class="text-content">
+                    <h4>Flash Deals</h4>
+                    <h2>Get your best products</h2>
+                </div>
+            </div>
+            <div class="banner-item-03">
+                <div class="text-content">
+                    <h4>Last Minute</h4>
+                    <h2>Grab last minute deals</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner Ends Here -->
+    <div class="modal fade" id="Add_Category">
+        <div class="modal-dialog " style="padding-top: 60px;">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add New Category</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {{ form.non_field_errors }}
+                        <div class="row" style="margin:5px;">
+                            <!-- <div class="col"> -->
+                            <div class="fieldWrapper">
+                                {{ form.subject.errors }}
+                            </div>
+                            <!-- </div> -->
+                            <!-- <div class="col"> -->
+                            <div>
+                                <label for="{{ form.subject.id_for_label }}">Name:</label>
+                                {{ form.name }}
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                        <div class="row" style="margin:5px;">
+                            <!-- <div class="col"> -->
+                            <div class="fieldWrapper">
+                                {{ form.subject.errors }}
+                            </div>
+                            <!-- </div> -->
+                            <!-- <div class="col"> -->
+                            <div>
+                                <label for="{{ form.subject.id_for_label }}">Desc:</label>
+                                {{ form.description }}
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                        <div class="row" style="margin:5px;">
+                            <div class="fieldWrapper">
+                                {{ form.subject.errors }}
+                            </div>
+
+
+                            <div>
+                                <label for="{{ form.subject.id_for_label }}">Images:</label>
+                                {{ form.images }}
+                            </div>
+
+                        </div>
+
+                        <input class="btn btn-primary" type="submit" value="Add Category">
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="latest-products">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>All Categories</h2>
+                        <a href="javascript:void(0)">Click on a Category to see it's corresponding products <i
+                                class="fa fa-angle-right"></i></a>
+                    </div>
+
+                </div>
+
+                {% for category in categories %}
+
+                <div class="col-md-4">
+                    <a href="{% url 'product_detail' category.id %}" title="Tap To View Products">
+                        <div class="product-item" style="min-height: 550px;">
+                            <img src="{{ BASIC_DIR }}/{{category.images}}" alt=""
+                                style="max-height:300px;height: 200px;">
+                            <div class="down-content">
+
+                                <h4>{{category.name}}</h4>
+
+                                <!-- <h6>$25.75</h6> -->
+                                <p>{{category.description}}</p>
+                                <div style="margin-top:2px ;">
+                                    <a href="{%url 'update_category_details' category.id %}"
+                                        data-target="#Add_Category"><small>Edit Category</small></a>
+                                </div>
+                                <a href="{%url 'delete_category' category.id %}"><span style="padding:3px;">Delete
+                                        Category</span></a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inner-content">
+                        <p>HeadStrait Full Stack Project Ecommerce Website
+
+                        <p>Tech Stack Used :- Django , Python , dbSqlite3, Html , Css , Bootstrap,</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'jquery.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/owl.js' %}"></script>
+    <script src="{% static 'js/slick.js' %}"></script>
+    <script src="{% static 'js/isotope.js' %}"></script>
+    <script src="{% static 'js/accordions.js' %}"></script>
+</body>
+
+</html>
